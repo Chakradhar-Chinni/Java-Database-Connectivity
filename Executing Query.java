@@ -23,3 +23,28 @@ public class Aclass
 		con.close();
 	}
 }
+
+-------------------------
+-------------------------
+package jdbc;
+import java.sql.*;
+public class B 
+{
+	public static void main(String[] args) throws Exception
+	{
+		String url = "jdbc:mysql://localhost:3309/javaep";
+		String uname = "root";
+		String upwd = "admin";
+		String query = "Select * from student WHERE student_id=2";
+		
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url,uname,upwd);
+		
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(query); 
+		rs.next();
+		
+		String data = rs.getString(2)+" : "+rs.getInt(1);                                       
+		System.out.println(data);
+	}
+}
